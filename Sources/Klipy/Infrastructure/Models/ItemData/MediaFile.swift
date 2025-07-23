@@ -88,6 +88,56 @@ public struct MediaDomainModel: Identifiable, Equatable, Sendable {
     
     return CGSize(width: newWidth, height: height)
   }
+
+  public func previewSizingFor(maxWidth: CGFloat?, maxHeight: CGFloat?) -> CGSize {
+    var contentHeight: Int?
+    var contentWidth: Int?
+    
+    if type == .ad {
+      contentHeight = adContentProperties?.height
+      contentWidth = adContentProperties?.width
+      return CGSize(width: CGFloat(contentWidth ?? 0), height: CGFloat(contentHeight ?? 0))
+    } else {
+      contentHeight = previewFile?.gif.height
+      contentWidth = previewFile?.gif.width
+    }
+    
+    guard let contentHeight, let contentWidth else { return .zero }
+    guard contentHeight > 0, contentWidth > 0 else { return .zero }
+    
+    let originalWidth = CGFloat(contentWidth)
+    let originalHeight = CGFloat(contentHeight)
+    let aspectRatio = originalWidth / originalHeight
+    
+    // If neither constraint is set, return .zero
+    if maxWidth == nil && maxHeight == nil {
+      return .zero
+    }
+    
+    var targetWidth = originalWidth
+    var targetHeight = originalHeight
+    
+    if let maxWidth = maxWidth, let maxHeight = maxHeight {
+      // Fit within both constraints
+      let widthRatio = maxWidth / originalWidth
+      let heightRatio = maxHeight / originalHeight
+      let minRatio = min(widthRatio, heightRatio)
+      targetWidth = originalWidth * minRatio
+      targetHeight = originalHeight * minRatio
+    } else if let maxWidth = maxWidth {
+      // Only width constraint
+      let widthRatio = maxWidth / originalWidth
+      targetWidth = originalWidth * widthRatio
+      targetHeight = originalHeight * widthRatio
+    } else if let maxHeight = maxHeight {
+      // Only height constraint
+      let heightRatio = maxHeight / originalHeight
+      targetWidth = originalWidth * heightRatio
+      targetHeight = originalHeight * heightRatio
+    }
+    
+    return CGSize(width: targetWidth, height: targetHeight)
+  }
 }
 
 public struct MediaDomainModelRow: Identifiable {
