@@ -15,8 +15,7 @@ let package = Package(
             targets: ["Klipy"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", from: "3.0.0"),
-        .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0")
+        .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", from: "3.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,8 +23,7 @@ let package = Package(
         .target(
             name: "Klipy",
             dependencies: [
-                "SDWebImageSwiftUI",
-                "Moya"
+                "SDWebImageSwiftUI"
             ]),
 
     ]
