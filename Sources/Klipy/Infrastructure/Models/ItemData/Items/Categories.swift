@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Categories: Codable, Sendable {
+public struct Categories: Codable, Sendable {
   let result: Bool
   let data: [String]
 }

@@ -5,6 +5,6 @@
 //  Created by Tornike Gomareli on 14.01.25.
 //
 
-struct FireAndForgetResponse: Codable {
+public struct FireAndForgetResponse: Codable, Sendable {
   let result: Bool
 }

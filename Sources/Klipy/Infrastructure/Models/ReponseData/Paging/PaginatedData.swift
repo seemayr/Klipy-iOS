@@ -8,19 +8,19 @@
 import Foundation
 
 public struct PaginatedDomain: Sendable {
-  let items: [MediaDomainModel]
-  let currentPage: Int
-  let perPage: Int
-  let hasNext: Bool
-  let gridMeta: GridMeta
+  public let items: [MediaDomainModel]
+  public let currentPage: Int
+  public let perPage: Int
+  public let hasNext: Bool
+  public let gridMeta: GridMeta
 }
 
 struct PaginatedData<T: Codable & Sendable>: Codable, Sendable {
-  let data: [T]
-  let currentPage: Int
-  let perPage: Int
-  let hasNext: Bool
-  let gridMeta: GridMeta
+  public let data: [T]
+  public let currentPage: Int
+  public let perPage: Int
+  public let hasNext: Bool
+  public let gridMeta: GridMeta
   
   enum CodingKeys: String, CodingKey {
     case data
@@ -31,7 +31,7 @@ struct PaginatedData<T: Codable & Sendable>: Codable, Sendable {
   }
 }
 
-struct GridMeta: Codable {
+public struct GridMeta: Codable, Sendable {
   var itemMinWidth: Int
   var adMaxResizePercent: Int
   

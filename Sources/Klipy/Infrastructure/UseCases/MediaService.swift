@@ -13,7 +13,7 @@ public enum MediaService {
   case sticker(StickersServiceUseCase)
   case none
   
-  func fetchTrending(page: Int, perPage: Int) async throws -> PaginatedDomain {
+  public func fetchTrending(page: Int, perPage: Int) async throws -> PaginatedDomain {
     switch self {
     case .gif(let service):
       let response = try await service.fetchTrending(page: page, perPage: perPage)
@@ -47,7 +47,7 @@ public enum MediaService {
     }
   }
   
-  func fetchRecents(page: Int, perPage: Int) async throws -> PaginatedDomain {
+  public func fetchRecents(page: Int, perPage: Int) async throws -> PaginatedDomain {
     switch self {
     case .gif(let service):
       let response = try await service.fetchRecentItems(page: page, perPage: perPage)
@@ -81,7 +81,7 @@ public enum MediaService {
     }
   }
   
-  func search(query: String, page: Int, perPage: Int) async throws -> PaginatedDomain {
+  public func search(query: String, page: Int, perPage: Int) async throws -> PaginatedDomain {
     switch self {
     case .gif(let service):
       let response = try await service.searchGifs(query: query, page: page, perPage: perPage)
@@ -115,7 +115,7 @@ public enum MediaService {
     }
   }
   
-  func categories() async throws -> Categories {
+  public func categories() async throws -> Categories {
     switch self {
     case .gif(let service):
       return try await service.fetchCategories()
@@ -128,7 +128,7 @@ public enum MediaService {
     }
   }
   
-  func trackView(slug: String) async throws -> FireAndForgetResponse {
+  public func trackView(slug: String) async throws -> FireAndForgetResponse {
     switch self {
     case .gif(let service): return try await service.trackView(slug: slug)
     case .clip(let service): return try await service.trackView(slug: slug)
@@ -137,7 +137,7 @@ public enum MediaService {
     }
   }
   
-  func trackShare(slug: String) async throws -> FireAndForgetResponse {
+  public func trackShare(slug: String) async throws -> FireAndForgetResponse {
     switch self {
     case .gif(let service): return try await service.trackShare(slug: slug)
     case .clip(let service): return try await service.trackShare(slug: slug)
@@ -146,7 +146,7 @@ public enum MediaService {
     }
   }
   
-  func hideFromRecent(slug: String) async throws -> FireAndForgetResponse {
+  public func hideFromRecent(slug: String) async throws -> FireAndForgetResponse {
     switch self {
     case .gif(let service): return try await service.hideFromRecent(slug: slug)
     case .clip(let service): return try await service.hideFromRecent(slug: slug)
@@ -155,7 +155,7 @@ public enum MediaService {
     }
   }
   
-  func report(slug: String, reason: String) async throws -> FireAndForgetResponse {
+  public func report(slug: String, reason: String) async throws -> FireAndForgetResponse {
     switch self {
     case .gif(let service): return try await service.reportGif(slug: slug, reason: reason)
     case .clip(let service): return try await service.reportClip(slug: slug, reason: reason)
