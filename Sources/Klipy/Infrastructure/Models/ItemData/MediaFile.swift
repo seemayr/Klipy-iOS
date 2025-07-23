@@ -28,15 +28,15 @@ public struct MediaFile: Equatable, Sendable {
 }
 
 public struct MediaFileVariant: Equatable, Sendable {
-  let url: String
-  let width: Int
-  let height: Int
+  public let url: String
+  public let width: Int
+  public let height: Int
 }
 
 public struct AdContentProperties: Sendable {
-  let width: Int
-  let height: Int
-  let content: String
+  public let width: Int
+  public let height: Int
+  public let content: String
 }
 
 public struct MediaDomainModel: Identifiable, Equatable, Sendable {
