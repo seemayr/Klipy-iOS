@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct KlipyWebViewRepresentable: UIViewRepresentable {
-  let url: URL?
-  let htmlString: String?
+public struct KlipyWebViewRepresentable: UIViewRepresentable {
+  public let url: URL?
+  public let htmlString: String?
   
   init(url: URL? = nil, htmlString: String? = nil) {
     self.url = url
     self.htmlString = htmlString
   }
   
-  func makeUIView(context: Context) -> KlipyWebView {
+  public func makeUIView(context: Context) -> KlipyWebView {
     KlipyWebView()
   }
   
-  func updateUIView(_ webView: KlipyWebView, context: Context) {
+  public func updateUIView(_ webView: KlipyWebView, context: Context) {
     if let url = url {
       webView.loadURL(url: url)
     } else if let htmlString = htmlString {

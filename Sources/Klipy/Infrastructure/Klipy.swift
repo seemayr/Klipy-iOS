@@ -25,6 +25,8 @@ public actor Klipy {
   ///   - apiKey: Your Klipy API key
   ///   - customerId: customer ID for tracking
   public static func setup(apiKey: String, customerId: String? = nil) {
+    Task { await UserAgentManager.shared.getUserAgent() }
+    
     Klipy.apiKey = apiKey
     Klipy.customerId = customerId
   }
