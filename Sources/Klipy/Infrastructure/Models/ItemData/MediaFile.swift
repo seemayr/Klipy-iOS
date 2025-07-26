@@ -64,6 +64,9 @@ public struct MediaDomainModel: Identifiable, Equatable, Sendable {
   public var previewFile: MediaFile? {
     return singleFile ?? sm ?? xs ?? md ?? hd
   }
+  public var compactFile: MediaFile? {
+    return singleFile ?? md ?? hd ?? sm ?? xs
+  }
   
   public func previewSizingFor(height: CGFloat) -> CGSize {
     var contentHeight: Int?
