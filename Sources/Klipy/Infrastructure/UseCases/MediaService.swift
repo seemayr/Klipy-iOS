@@ -13,10 +13,10 @@ public enum MediaService {
   case sticker(StickersServiceUseCase)
   case none
   
-  public func fetchTrending(page: Int, perPage: Int) async throws -> PaginatedDomain {
+  public func fetchTrending(page: Int, perPage: Int, locale: String = "ka") async throws -> PaginatedDomain {
     switch self {
     case .gif(let service):
-      let response = try await service.fetchTrending(page: page, perPage: perPage)
+      let response = try await service.fetchTrending(page: page, perPage: perPage, locale: locale)
       return PaginatedDomain(
         items: response.data.data.map { $0.toDomain() },
         currentPage: response.data.currentPage,
@@ -25,7 +25,7 @@ public enum MediaService {
         gridMeta: response.data.gridMeta
       )
     case .clip(let service):
-      let response = try await service.fetchTrending(page: page, perPage: perPage)
+      let response = try await service.fetchTrending(page: page, perPage: perPage, locale: locale)
       return PaginatedDomain(
         items: response.data.data.map { $0.toDomain() },
         currentPage: response.data.currentPage,
@@ -34,7 +34,7 @@ public enum MediaService {
         gridMeta: response.data.gridMeta
       )
     case .sticker(let service):
-      let response = try await service.fetchTrending(page: page, perPage: perPage)
+      let response = try await service.fetchTrending(page: page, perPage: perPage, locale: locale)
       return PaginatedDomain(
         items: response.data.data.map { $0.toDomain() },
         currentPage: response.data.currentPage,
@@ -81,10 +81,10 @@ public enum MediaService {
     }
   }
   
-  public func search(query: String, page: Int, perPage: Int) async throws -> PaginatedDomain {
+  public func search(query: String, page: Int, perPage: Int, locale: String = "ka") async throws -> PaginatedDomain {
     switch self {
     case .gif(let service):
-      let response = try await service.searchGifs(query: query, page: page, perPage: perPage)
+      let response = try await service.searchGifs(query: query, page: page, perPage: perPage, locale: locale)
       return PaginatedDomain(
         items: response.data.data.map { $0.toDomain() },
         currentPage: response.data.currentPage,
@@ -93,7 +93,7 @@ public enum MediaService {
         gridMeta: response.data.gridMeta
       )
     case .clip(let service):
-      let response = try await service.searchClips(query: query, page: page, perPage: perPage)
+      let response = try await service.searchClips(query: query, page: page, perPage: perPage, locale: locale)
       return PaginatedDomain(
         items: response.data.data.map { $0.toDomain() },
         currentPage: response.data.currentPage,
@@ -102,7 +102,7 @@ public enum MediaService {
         gridMeta: response.data.gridMeta
       )
     case .sticker(let service):
-      let response = try await service.searchStickers(query: query, page: page, perPage: perPage)
+      let response = try await service.searchStickers(query: query, page: page, perPage: perPage, locale: locale)
       return PaginatedDomain(
         items: response.data.data.map { $0.toDomain() },
         currentPage: response.data.currentPage,
