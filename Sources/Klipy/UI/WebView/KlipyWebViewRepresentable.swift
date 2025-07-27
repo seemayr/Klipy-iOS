@@ -11,7 +11,7 @@ public struct KlipyWebViewRepresentable: UIViewRepresentable {
   public let url: URL?
   public let htmlString: String?
   
-  init(url: URL? = nil, htmlString: String? = nil) {
+  public init(url: URL? = nil, htmlString: String? = nil) {
     self.url = url
     self.htmlString = htmlString
   }
