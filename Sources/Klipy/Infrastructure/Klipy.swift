@@ -3,11 +3,11 @@ import Foundation
 /// Main entry point for the Klipy SDK
 public actor Klipy {
   // MARK: - Properties
-  static private var apiKey: String?
-  static private var customerId: String?
-  
+  nonisolated(unsafe) static private var apiKey: String?
+  nonisolated(unsafe) static private var customerId: String?
+
   static private let baseURL: String = "https://api.klipy.co/api/v1/"
-  static private let apiClient: APIClient = APIClient()
+  nonisolated(unsafe) static private let apiClient: APIClient = APIClient()
   
   static var apiURL: URL? {
     guard let apiKey else { return nil }
