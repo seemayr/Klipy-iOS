@@ -72,7 +72,7 @@ public struct ClipsServiceUseCase {
     )
   }
   
-  func trackView(
+  public func trackView(
     slug: String
   ) async throws -> FireAndForgetResponse {
     try await client.request(
@@ -84,7 +84,7 @@ public struct ClipsServiceUseCase {
     )
   }
   
-  func trackShare(
+  public func trackShare(
     slug: String
   ) async throws -> FireAndForgetResponse {
     try await client.request(

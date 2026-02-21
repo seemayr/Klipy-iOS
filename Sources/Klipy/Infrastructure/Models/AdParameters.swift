@@ -18,7 +18,7 @@ struct AdParameters {
     
     // Device Info
     params["ad-os"] = "ios"
-    params["ad-osv"] = Int(UIDevice.current.systemVersion)
+    params["ad-osv"] = UIDevice.current.systemVersion
     params["ad-make"] = "apple"
     params["ad-model"] = "iphone"
     params["ad-device-w"] = Int(UIScreen.main.bounds.width)
@@ -33,7 +33,7 @@ struct AdParameters {
     
     let identifierForAdvertising = ASIdentifierManager.shared().advertisingIdentifier
     params["ad-ifa"] = identifierForAdvertising.uuidString
-    params["ad-language"] = "EN"
+    params["ad-language"] = Locale.current.language.languageCode?.identifier.uppercased() ?? "EN"
     
     return params
   }
