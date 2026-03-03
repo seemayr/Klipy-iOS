@@ -154,7 +154,7 @@ All use cases use shared configuration by default:
 // APIConfiguration.swift
 public struct APIConfiguration {
     public static let apiKey = "your-api-key"
-    public static let baseURL = URL(string: "https://api.klipy.co/api/v1/\(apiKey)")!
+    public static let baseURL = URL(string: "https://api.klipy.com/api/v1/\(apiKey)")!
     public static let sharedClient = APIClient()
 }
 ```
@@ -213,7 +213,7 @@ try await stickerService.trackShare(slug: "sticker-123")
 ```swift
 // For testing or different environments
 let customClient = APIClient()
-let customURL = URL(string: "https://staging.api.klipy.co")!
+let customURL = URL(string: "https://staging.api.klipy.com")!
 
 let service = GifServiceUseCase(
     client: customClient,

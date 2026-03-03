@@ -6,7 +6,7 @@ public actor Klipy {
   nonisolated(unsafe) static private var apiKey: String?
   nonisolated(unsafe) static private var customerId: String?
 
-  static private let baseURL: String = "https://api.klipy.co/api/v1/"
+  static private let baseURL: String = "https://api.klipy.com/api/v1/"
   nonisolated(unsafe) static private let apiClient: APIClient = APIClient()
   
   static var apiURL: URL? {
