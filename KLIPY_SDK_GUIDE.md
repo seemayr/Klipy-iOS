@@ -254,7 +254,9 @@ struct GifBrowser: View {
 
 4. **Pagination**: Implement proper pagination for large result sets.
 
-5. **Caching**: Consider caching responses to reduce API calls.
+5. **Ads**: Use the SDK-provided `KlipyWebViewRepresentable` for ad items. It matches the official demo app by requesting iframe-compatible ad payloads and loading URL-based ad content as a WebView URL.
+
+6. **Caching**: Consider caching responses to reduce API calls.
 
 ## Migration from Direct API Usage
 

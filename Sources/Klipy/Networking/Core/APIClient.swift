@@ -1,5 +1,8 @@
 import Foundation
 
+private let adIframeQueryName = "ad-iframe"
+private let adIframeQueryValue = "1"
+
 public enum APIError: Error {
   case invalidURL
   case noData
@@ -92,6 +95,8 @@ public class APIClient: APIClientProtocol {
       components.queryItems = parameters.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
       print("🔗 Query items set: \(components.queryItems?.count ?? 0) items")
     }
+
+    components.appendQueryItemIfNeeded(name: adIframeQueryName, value: adIframeQueryValue)
     
     guard let url = components.url else {
       print("❌ Failed to construct URL from components")
@@ -136,5 +141,17 @@ public class APIClient: APIClientProtocol {
     }
     
     return request
+  }
+}
+
+private extension URLComponents {
+  mutating func appendQueryItemIfNeeded(name: String, value: String) {
+    var items = self.queryItems ?? []
+    guard !items.contains(where: { $0.name == name }) else {
+      return
+    }
+
+    items.append(URLQueryItem(name: name, value: value))
+    self.queryItems = items
   }
 }

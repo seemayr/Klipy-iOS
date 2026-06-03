@@ -141,10 +141,20 @@ The `APIClient` automatically adds device/advertising parameters to requests:
 parameters = await parameters.withAdParameters()
 ```
 
+The client also appends `ad-iframe=1` as a URL query item to every request. This matches the official iOS demo app behavior and tells the API to return ad payloads suitable for iframe/WebView rendering.
+
 This solves the MainActor isolation issue because:
 - AdParameters access UI properties (UIScreen, UIDevice) on MainActor
 - The async call properly switches to MainActor context
 - No manual intervention needed
+
+### Ad WebView Payloads
+
+Ad items can return either inline HTML or a URL string in `content`. `KlipyWebView` handles both cases:
+
+- URL payloads are loaded as a URL request.
+- The URL is normalized with `ad-iframe=1` if the query item is missing.
+- Non-URL payloads continue to render with `loadHTMLString`.
 
 ### Default Configuration
 
